@@ -1,19 +1,16 @@
-import './App.css'
-import FoodItem from './FoodItem'
-import Header from './Header'
-import VoteBoujie from './VoteBoujie'
-import VoteNotBoujie from './VoteNotBoujie'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Root from "./Root";
+import FoodItem from "./FoodItem";
 
 function App() {
-
   return (
-    <>
-     <Header />
-     <FoodItem />
-     <VoteBoujie />
-     <VoteNotBoujie />
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Root />} />
+        <Route path="/items/:name" element={<FoodItem />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

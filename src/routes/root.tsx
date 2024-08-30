@@ -9,19 +9,21 @@ interface Food {
 };
 
 export default function Root() {
-  const {foods} = useLoaderData();
+  const { foods } = useLoaderData<{ foods: Food[] }>();
+  console.log(foods)
+
 
   return (
     <div className="text-center">
     <h1>Boujie Food</h1>
     <Link to={`/food`}>Start</Link>
     <ul>
-      {foods.map((food, index) => {
+      {foods.map((food) => {
         return (
-          <li
-          key={index}
-          >
-            <Link to={`food/${food.Name}`}>{food.Name}</Link>
+          <li key={food.id}>
+            <Link to={`food/${food.Name}`}>
+            {food.Name}
+            </Link>
           </li>
         )
       })
@@ -33,5 +35,6 @@ export default function Root() {
 
 export async function loader() {
   const foods: Food[] = await fetchFoods();
+  console.log(foods)
   return {foods};
 }
